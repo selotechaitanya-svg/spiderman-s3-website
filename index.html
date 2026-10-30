@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spider-Man NYC Incident Response Network</title>
+  <style>
+    :root {
+      --spidey-red: #e23636;
+      --spidey-blue: #0984e3;
+      --spidey-dark: #10141f;
+      --spidey-card: #1a2030;
+      --spidey-accent: #f6b93b;
+      --spidey-text: #f5f6fa;
+      --spidey-muted: #a4b0be;
+      --border-color: #2f3542;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--spidey-dark);
+      color: var(--spidey-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(226, 54, 54, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(9, 132, 227, 0.15) 0%, transparent 40%);
+    }
+
+    header {
+      background: rgba(16, 20, 31, 0.95);
+      border-bottom: 2px solid var(--spidey-red);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(226, 54, 54, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--spidey-text);
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+    }
+
+    .badge-live {
+      background: var(--spidey-red);
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      font-weight: 700;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(226, 54, 54, 0.2), rgba(9, 132, 227, 0.2));
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-banner h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(226, 54, 54, 0.6);
+    }
+
+    .hero-banner p {
+      font-size: 1.2rem;
+      color: var(--spidey-muted);
+      max-width: 750px;
+      margin: 0 auto 1.8rem auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--spidey-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--spidey-blue);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--spidey-accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      color: var(--spidey-muted);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--spidey-red);
+      padding-left: 12px;
+    }
+
+    .incidents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .incident-card {
+      background: var(--spidey-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .priority-badge {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .priority-high {
+      background: rgba(226, 54, 54, 0.2);
+      border: 1px solid var(--spidey-red);
+      color: #ff6b6b;
+    }
+
+    .priority-medium {
+      background: rgba(246, 185, 59, 0.2);
+      border: 1px solid var(--spidey-accent);
+      color: #f6b93b;
+    }
+
+    .priority-low {
+      background: rgba(46, 204, 113, 0.2);
+      border: 1px solid #2ecc71;
+      color: #2ecc71;
+    }
+
+    .incident-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      padding-right: 70px;
+    }
+
+    .incident-detail {
+      font-size: 0.9rem;
+      color: var(--spidey-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .incident-detail strong {
+      color: var(--spidey-text);
+    }
+
+    .btn-action {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 8px 16px;
+      background: var(--spidey-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: #076fc2;
+    }
+
+    footer {
+      background: rgba(16, 20, 31, 0.95);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 2rem;
+      color: var(--spidey-muted);
+      font-size: 0.9rem;
+    }
+
+    .aws-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #232f3e;
+      color: #ff9900;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">🕷️</span>
+        <span>SPIDER-NET NYC</span>
+      </a>
+      <span class="badge-live">● S3 Static Live</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-banner">
+      <h1>Spider-Man Incident Dispatch Hub</h1>
+      <p>Real-time threat monitoring and response priority coordination across Manhattan, Queens, Brooklyn, and beyond.</p>
+      <div class="aws-badge">☁️ Hosted on Amazon Simple Storage Service (Amazon S3)</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">1,600</div>
+        <div class="stat-label">Incidents Logged</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">87.8%</div>
+        <div class="stat-label">Model Accuracy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">S3 Uptime Guarantee</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">&lt; 15ms</div>
+        <div class="stat-label">Response Latency</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Active Emergency Incident Monitor</h2>
+    <div class="incidents-grid">
+      
+      <div class="incident-card">
+        <span class="priority-badge priority-high">High Priority</span>
+        <h3 class="incident-title">Oscorp Reactor Sabotage</h3>
+        <p class="incident-detail"><strong>Villain:</strong> Green Goblin</p>
+        <p class="incident-detail"><strong>Location:</strong> Midtown Manhattan</p>
+        <p class="incident-detail"><strong>Civilians at Risk:</strong> 120</p>
+        <p class="incident-detail"><strong>Spider-Sense Alert:</strong> Critical Level</p>
+        <a href="#dispatch" class="btn-action">Dispatch Spider-Man</a>
+      </div>
+
+      <div class="incident-card">
+        <span class="priority-badge priority-medium">Medium Priority</span>
+        <h3 class="incident-title">Armored Truck Heist</h3>
+        <p class="incident-detail"><strong>Villain:</strong> Rhino / Thugs</p>
+        <p class="incident-detail"><strong>Location:</strong> Queens Blvd</p>
+        <p class="incident-detail"><strong>Civilians at Risk:</strong> 18</p>
+        <p class="incident-detail"><strong>Spider-Sense Alert:</strong> Moderate</p>
+        <a href="#dispatch" class="btn-action">Dispatch Spider-Man</a>
+      </div>
+
+      <div class="incident-card">
+        <span class="priority-badge priority-low">Low Priority</span>
+        <h3 class="incident-title">Mugger Trapped in Web</h3>
+        <p class="incident-detail"><strong>Villain:</strong> Common Thief</p>
+        <p class="incident-detail"><strong>Location:</strong> Brooklyn Alleyway</p>
+        <p class="incident-detail"><strong>Civilians at Risk:</strong> 0</p>
+        <p class="incident-detail"><strong>Spider-Sense Alert:</strong> Clear</p>
+        <a href="#dispatch" class="btn-action">Awaiting NYPD Intake</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Spider-Net Emergency Response Dispatcher &bull; Cloud Computing 2nd-Year Project</p>
+    <p>Static Website Hosted on Amazon S3 with Web-Tier Architecture</p>
+  </footer>
+
+</body>
+</html>

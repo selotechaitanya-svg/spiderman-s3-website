@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Web Line Severed | Spider-Net NYC</title>
+  <style>
+    :root {
+      --spidey-red: #e23636;
+      --spidey-blue: #0984e3;
+      --spidey-dark: #10141f;
+      --spidey-card: #1a2030;
+      --spidey-accent: #f6b93b;
+      --spidey-text: #f5f6fa;
+      --spidey-muted: #a4b0be;
+      --border-color: #2f3542;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--spidey-dark);
+      color: var(--spidey-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background-image: 
+        radial-gradient(circle at 50% 40%, rgba(226, 54, 54, 0.25) 0%, transparent 60%);
+    }
+
+    .error-container {
+      background: var(--spidey-card);
+      border: 2px solid var(--spidey-red);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(226, 54, 54, 0.3);
+    }
+
+    .spider-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: swing 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes swing {
+      0% { transform: rotate(-15deg); }
+      100% { transform: rotate(15deg); }
+    }
+
+    h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--spidey-red);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(226, 54, 54, 0.6);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--spidey-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-home {
+      display: inline-block;
+      background: var(--spidey-red);
+      color: white;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(226, 54, 54, 0.4);
+    }
+
+    .btn-home:hover {
+      background: #c02d2d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(226, 54, 54, 0.6);
+    }
+
+    .s3-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #747d8c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-container">
+    <div class="spider-icon">🕸️🕷️🕸️</div>
+    <h1>404</h1>
+    <h2>Web Line Severed!</h2>
+    <p>Looks like you swung into an unknown borough! Even Peter Parker's spider-sense couldn't track down the page you're searching for.</p>
+    <a href="index.html" class="btn-home">Swing Back to Home Hub</a>
+    <div class="s3-note">Amazon S3 Static Website Error Document &bull; HTTP 404</div>
+  </div>
+
+</body>
+</html>
